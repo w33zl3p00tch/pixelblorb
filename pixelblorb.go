@@ -53,6 +53,8 @@ func main() {
 	}
 }
 
+// imgParseBin outputs pixel data in binary representation.
+// The order is Big Endian.
 func imgParseBin(src image.Image) {
 	bounds := src.Bounds()
 	w, h := bounds.Max.X, bounds.Max.Y
@@ -82,6 +84,7 @@ func imgParseBin(src image.Image) {
 	}
 }
 
+// binPad pads the byte with zeros until it consists of 8 bits, if necessary.
 func binPad(binVal string) string {
 	for len(binVal) < 8 {
 		binVal = "0" + binVal
@@ -90,6 +93,7 @@ func binPad(binVal string) string {
 	return binVal
 }
 
+// imgParseDec outputs pixel data as decimal values.
 func imgParseDec(src image.Image) {
 	bounds := src.Bounds()
 	w, h := bounds.Max.X, bounds.Max.Y
@@ -109,6 +113,7 @@ func imgParseDec(src image.Image) {
 	}
 }
 
+// check for errors and quit if an error occured.
 func check(err error) {
 	if err != nil {
 		log.Fatal(err)
